@@ -11,7 +11,10 @@ class personalInfo extends StatefulWidget {
 }
 
 class _personalInfoState extends State<personalInfo> {
-  final myController = TextEditingController();
+  final fname = TextEditingController();
+  final email = TextEditingController();
+  final lname = TextEditingController();
+  final pnum = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,22 +59,32 @@ class _personalInfoState extends State<personalInfo> {
                     child: Container(
                       width: 140,
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'First Name'),
+                          controller:fname,
+                        decoration: InputDecoration(
+                            labelText: 'First Name'
+                        ),
                       ),
                     ),
                   ),
                   Container(
                     width: 140.0,
                     child: TextField(
-                      decoration: InputDecoration(labelText: 'Last Name'),
+                        controller:lname,
+                      decoration: InputDecoration(
+                          labelText: 'Last Name'
+                      ),
                     ),
                   )
                 ],
               ),
               TextField(
-                decoration: InputDecoration(labelText: 'Email'),
+                controller:email,
+                decoration: InputDecoration(
+                    labelText: 'Email'
+                ),
               ),
               TextField(
+                controller:pnum,
                 decoration: InputDecoration(
                     labelText: 'Phone Number', hintText: '1 876 123 4567'),
               ),

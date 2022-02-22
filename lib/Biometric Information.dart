@@ -14,6 +14,28 @@ class biomentric extends StatefulWidget {
 }
 
 class _biomentricState extends State<biomentric> {
+  final feet=TextEditingController();
+  final inches=TextEditingController();
+  late DateTime birthday;
+  String getext(){
+    if(birthday==null)
+      return 'Select Date';
+    else
+      return '${birthday.month}/${birthday.day}/${birthday.year}';
+  }
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +83,7 @@ class _biomentricState extends State<biomentric> {
                         Container(
                           width: 140,
                           child: TextField(
+                            controller: feet,
                             decoration: InputDecoration(
                               labelText: 'Feet',
                             ),
@@ -71,6 +94,7 @@ class _biomentricState extends State<biomentric> {
                         Container(
                           width: 140,
                           child: TextField(
+                            controller: inches,
                             decoration: InputDecoration(
                               labelText: 'Inches',
                             ),
@@ -89,8 +113,11 @@ class _biomentricState extends State<biomentric> {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.calendar_today_outlined))
+                            onPressed: () => _selectDate(context),
+                            icon: Icon(
+                                Icons.calendar_today_outlined
+                            )
+                        )
                       ],
                     ),
                     const Align(
